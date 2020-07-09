@@ -202,11 +202,13 @@ function getUserMediaDevices() {
           .getUserMedia(constraints)
           .then(getUserMediaSuccess)
           .catch(getUserMediaError);
-      else if (sc)
+      else if (sc) {
         navigator.mediaDevices
+          // @ts-ignore
           .getDisplayMedia(constraints)
           .then(getUserMediaSuccess)
           .catch(getUserMediaError);
+      }
     }
   }
 }
@@ -257,6 +259,7 @@ function toggleVideo() {
   mediaState.video = !mediaState.video;
   if (localVideo instanceof HTMLVideoElement) {
     localVideo.srcObject
+      // @ts-ignore
       .getVideoTracks()
       .forEach((t) => (t.enabled = !t.enabled));
   }
@@ -268,6 +271,7 @@ function toggleAudio() {
   mediaState.audio = !mediaState.audio;
   if (localVideo instanceof HTMLVideoElement) {
     localVideo.srcObject
+      // @ts-ignore
       .getAudioTracks()
       .forEach((t) => (t.enabled = !t.enabled));
   }

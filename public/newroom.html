@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body style="display: flex; justify-content: center;">
+    <div
+      style="
+        display: inline;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+      "
+    >
+      <p class="font-italic" style="display: none;" id="txt">
+        share your room link
+      </p>
+      <button
+        class="btn btn-success m-2"
+        onclick="createRoom()"
+        id="create-btn"
+      >
+        Create New Room
+      </button>
+      <input
+        type="text"
+        class="form-control"
+        readonly
+        id="url-str"
+        style="display: none;"
+      />
+      <button
+        class="btn btn-success m-2"
+        onclick="copyTxt()"
+        id="copy-btn"
+        style="display: none;"
+      >
+        Copy Link
+      </button>
+      <button
+        class="btn btn-primary m-2"
+        onclick="join()"
+        id="join-btn"
+        style="display: none;"
+      >
+        Join Room
+      </button>
+    </div>
+
+    <script>
+      function createRoom() {
+        document.getElementById("create-btn").setAttribute("disabled", "true");
+        document.getElementById("create-btn").style.display = "none";
+        var room_no = Math.ceil(Math.random() * 1000000);
+        var url = window.location.origin + "/" + room_no;
+        document.getElementById("url-str").value = url;
+        document.getElementById("url-str").style.display = "block";
+        document.getElementById("copy-btn").style.display = "block";
+        document.getElementById("txt").style.display = "block";
+        document.getElementById("join-btn").style.display = "block";
+      }
+      function copyTxt() {
+        var copyText = document.getElementById("url-str");
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Copied url");
+      }
+      function join() {
+        window.open(document.getElementById("url-str").value, "_self");
+      }
+    </script>
+  </body>
+</html>
