@@ -2,16 +2,128 @@
 <html lang="en">
   <head>
     <title>Video Chat</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Video Chat.">
-    <meta name="author" content="Brian Mau">
-    <link href="/css/main.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="description" content="Video Chat." />
+    <meta name="author" content="Brian Mau" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="./css/main.css" rel="stylesheet" />
   </head>
+
   <body>
-    <video class="localVideo" playsinline autoplay muted></video>
-    <div class="remoteVideos"></div>
-    <script src='/socket.io/socket.io.js'></script>
-    <script src="/js/video.js"></script>
-</body>
+    <div id="remoteVideos"></div>
+    <h1 class="text-center" style="display: none;" id="sc-txt">
+      Screen is Shared
+    </h1>
+    <div
+      id="control-bar"
+      class="bg-secondary rounded pt-3 pb-4 shadow fixed-bottom"
+    >
+      <div class="offset-md-2 col-md-8 d-flex flex-row justify-content-around">
+        <i
+          class="fa fa-microphone fa-2x set1"
+          style="color: #13aa2b;"
+          aria-hidden="true"
+          onclick="toggleAudio()"
+          style="display: block;"
+          id="mic-icon"
+        ></i>
+
+        <i
+          class="fa fa-video-camera fa-2x set1"
+          style="color: #13aa2b;"
+          aria-hidden="true"
+          onclick="toggleVideo()"
+          style="display: block;"
+          id="video-icon"
+        ></i>
+        <i
+          class="fa fa-desktop fa-2x set1"
+          aria-hidden="true"
+          style="display: block;"
+          onclick="toggleScreenShare()"
+        ></i>
+        <i
+          class="fa fa-arrow-circle-o-left fa-2x set1"
+          style="display: block;"
+          onclick="toggleOptions('set1','set2')"
+          aria-hidden="true"
+        ></i>
+        <i
+          class="fa fa-arrow-circle-o-right fa-2x set2"
+          style="display: none;"
+          onclick="toggleOptions('set2','set1')"
+          aria-hidden="true"
+        ></i>
+        <i
+          class="fa fa-phone fa-2x text-danger set2"
+          aria-hidden="true"
+          style="display: none;"
+          onclick="endCall()"
+        ></i>
+        <i
+          class="fa fa-comments fa-2x text-info set2"
+          aria-hidden="true"
+          onclick="toggleChat()"
+          style="display: none;"
+        ></i>
+        <i
+          class="fa fa-users fa-2x text-info set2"
+          aria-hidden="true"
+          onclick="toggleMembers()"
+          style="display: none;"
+        ></i>
+      </div>
+    </div>
+
+    <i
+      class="fa fa-arrow-circle-left fa-2x"
+      aria-hidden="true"
+      onclick="toggleLocal()"
+      style="left: 250px;"
+      id="localvideocontrol"
+    ></i>
+
+    <video
+      id="localVideo"
+      class="localVideo"
+      playsinline
+      autoplay
+      muted
+      style="display: block;"
+    ></video>
+
+    <div id="chat" class="rounded bg-light" style="display: none;">
+      <div style="display: flex; flex-direction: row;">
+        <input
+          type="text"
+          style="flex-grow: 1;"
+          class="form-control"
+          placeholder="message...."
+          id="message"
+        /><button class="btn btn-primary" onclick="sendMessage()">
+          send
+        </button>
+      </div>
+      <ul id="messages" class="list-group p-3"></ul>
+    </div>
+    <ul
+      id="members"
+      class="rounded bg-light list-group p-3 pl-4"
+      style="display: none;"
+    ></ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/video.js"></script>
+  </body>
 </html>

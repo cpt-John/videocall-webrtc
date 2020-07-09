@@ -12,6 +12,14 @@ const RoomService = require("./RoomService")(io);
 io.sockets.on("connection", RoomService.listen);
 io.sockets.on("error", (e) => console.log(e));
 app.use(express.static(__dirname + "/public"));
+app.get("/close", function (req, res) {
+  res.send(`<html><head></head><body>
+   <h1  style="display: block;text-align:center;justify-text:center; padding-top:20px" >
+      You can close this tab!
+    </h1>
+  <script>window.close()</script>
+</body></html>`);
+});
 app.get("*", function (req, res) {
   res.sendFile(`${__dirname}/public/index.html`);
 });

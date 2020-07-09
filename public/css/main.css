@@ -1,47 +1,75 @@
-
-html {
-	overflow: hidden;
-	height: 100%;
-}
-.one video {
-	object-fit: cover;
-}
-.localVideo {
-	width: 20%;
-	position: absolute;
-	z-index: 2;
-	bottom: 10px;
-	left: 10px;
-	display: block;
-}
-.remoteVideos {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
-	align-content: stretch;
-}
-.remoteVideos video {
-	flex-grow: 1;
-	flex-shrink: 1;
-	min-width: 0px;
-	min-height: 0px;
-}
+html,
 body {
-  background-color: black;
-  margin: 0;
-	height: 100%;
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+  min-height: 100vh;
+}
+.container_ {
+  display: flex;
+  flex-direction: column;
+}
+#chat,
+#members {
+  position: absolute;
+  z-index: 5px;
+  right: 0;
+  top: 0;
+  bottom: 70px;
+  width: 350px;
+  border: 2px solid;
+
+  flex-direction: column-reverse;
+}
+@media only screen and (max-width: 450px) {
+  /* For mobile phones: */
+  #chat,
+  #members {
+    width: 100%;
+  }
+}
+.remoteVideo {
+  width: 250px;
+  border: 2px solid green;
+  border-radius: 5px;
+  margin: 5px;
+  flex-grow: 1;
+  max-height: 80vh;
+}
+#remoteVideos {
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  display: flex;
+  max-height: 90vh;
+  overflow-y: scroll;
 }
 
+#localVideo {
+  position: absolute;
+  position: fixed;
+  z-index: 3px;
+  left: 0;
+  bottom: 75px;
+  background-color: black;
+  width: 250px;
+  border: 2px solid;
+}
+.sc {
+  visibility: hidden;
+}
+#localvideocontrol {
+  position: absolute;
+  position: fixed;
+
+  bottom: 75px;
+}
+ul {
+  list-style: none;
+}
+
+ul#members:empty:after {
+  font-weight: 100;
+  font-style: italic;
+  content: "Room is empty";
+}
+
+li {
+  margin: 5px;
+}
