@@ -16,47 +16,63 @@
     />
   </head>
   <body style="display: flex; justify-content: center;">
-    <div
-      style="
-        display: inline;
-        align-self: center;
-        display: flex;
-        flex-direction: column;
-      "
-    >
-      <p class="font-italic" style="display: none;" id="txt">
-        share your room link
-      </p>
-      <button
-        class="btn btn-success m-2"
-        onclick="createRoom()"
-        id="create-btn"
-      >
-        Create New Room
-      </button>
-      <input
-        type="text"
-        class="form-control"
-        readonly
-        id="url-str"
-        style="display: none;"
-      />
-      <button
-        class="btn btn-success m-2"
-        onclick="copyTxt()"
-        id="copy-btn"
-        style="display: none;"
-      >
-        Copy Link
-      </button>
-      <button
-        class="btn btn-primary m-2"
-        onclick="join()"
-        id="join-btn"
-        style="display: none;"
-      >
-        Join Room
-      </button>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col text-center">
+          <p class="h1 shadow mb-5 p-3 rounded text-center bg-light">
+            Simple Video Confrence
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div style="font-style: italic;">
+          <ul>
+            <li>App allows you to connect to others without registration</li>
+            <li>Free of Cost Forever</li>
+            <li>Don't forget to copy your room Id</li>
+            <li>Create a room start confrence / chatting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <p class="font-italic" style="display: none;" id="txt">
+            Your room link:
+          </p>
+          <button
+            class="btn btn-success m-2"
+            onclick="createRoom()"
+            id="create-btn"
+          >
+            Create New Room
+          </button>
+          <input
+            type="text"
+            class="form-control text-center"
+            readonly
+            id="url-str"
+            style="display: none;"
+          />
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-success m-2"
+              onclick="copyTxt()"
+              id="copy-btn"
+              style="display: none;"
+            >
+              Copy Link
+            </button>
+            <button
+              class="btn btn-primary m-2"
+              onclick="join()"
+              id="join-btn"
+              style="display: none;"
+            >
+              Join Room
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
